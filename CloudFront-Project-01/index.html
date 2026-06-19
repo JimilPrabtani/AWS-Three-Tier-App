@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Tasks – TODO App</title>
+    <meta name="description" content="A clean, fast TODO app to manage your daily tasks.">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+        integrity="sha512-Avb2QiuDEEvB4bZJYdft2mNjVShBftLdPG8FJ0V7irTLQ8Uo0qcPxh4Plh7eecIa0lHQv6/etrLe4/6rFq+w=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+
+<body>
+    <div class="app">
+        <header>
+            <h1>
+                <i class="fas fa-check-circle"></i>
+                My Tasks
+            </h1>
+            <p id="date"></p>
+        </header>
+
+        <div class="todo-input">
+            <!-- Input + Plus button row -->
+            <div class="input-row">
+                <input type="text" id="task-input" placeholder="Add a new task..." autocomplete="off">
+                <button id="add-task-btn" title="Add task" aria-label="Add task">+</button>
+            </div>
+
+            <!-- Filter buttons row -->
+            <div class="filters">
+                <button class="filter-btn active" data-filter="all">All</button>
+                <button class="filter-btn" data-filter="active">Active</button>
+                <button class="filter-btn" data-filter="completed">Completed</button>
+            </div>
+        </div>
+
+        <div class="todos-container">
+            <ul id="todo-list">
+                <!-- todo items are inserted here by script.js -->
+            </ul>
+            <div class="empty-state hidden">
+                <i class="fas fa-clipboard-list"></i>
+                <p>No tasks to display</p>
+            </div>
+            <footer>
+                <p id="items-left">0 items left</p>
+                <button id="clear-completed-btn">Clear Completed</button>
+            </footer>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>

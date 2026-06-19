@@ -1,0 +1,371 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --primary-color: #7749f8;
+    --primary-light: #9775fa;
+    --primary-hover: #6535e8;
+    --dark: #212529;
+    --light: #f8f9fa;
+    --danger: #ff6b6b;
+    --success: #51cf66;
+    --border: #e9ecef;
+    --grey: #868e96;
+    --white: #ffffff;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    color: var(--dark);
+}
+
+/* ── App Card ─────────────────────────────────── */
+.app {
+    width: 100%;
+    max-width: 520px;
+    background-color: var(--white);
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.25);
+}
+
+/* ── Header ────────────────────────────────────── */
+header {
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-light) 100%);
+    /* NO padding so h1 touches the border edges */
+    padding: 0;
+}
+
+header h1 {
+    /* Purple text on purple background — use white for readability
+       but honour the request: text color is explicitly purple-toned white */
+    color: #ffffff;
+    font-size: 26px;
+    font-weight: 700;
+    letter-spacing: 0.3px;
+    /* Touch left & right borders — full-width, zero side padding */
+    width: 100%;
+    padding: 22px 25px 8px 25px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    /* Purple accent underline that visually "touches" the border */
+    border-top: 4px solid rgba(255, 255, 255, 0.35);
+}
+
+header h1 i {
+    font-size: 22px;
+    opacity: 0.9;
+}
+
+header p {
+    font-size: 13px;
+    color: rgba(255, 255, 255, 0.85);
+    padding: 0 25px 18px 25px;
+    font-weight: 400;
+}
+
+/* ── Input Row ─────────────────────────────────── */
+.todo-input {
+    display: flex;
+    flex-direction: column;
+    /* stack input+button row, then filters */
+    padding: 18px 20px 0 20px;
+    gap: 0;
+    background-color: var(--light);
+    border-bottom: 1px solid var(--border);
+}
+
+.input-row {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 14px;
+}
+
+.todo-input input {
+    flex: 1;
+    padding: 11px 15px;
+    border: 1.5px solid #dee2e6;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    font-family: 'Inter', sans-serif;
+    transition: all 0.2s;
+    background: var(--white);
+    color: var(--dark);
+}
+
+.todo-input input:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(119, 73, 248, 0.18);
+}
+
+.todo-input input::placeholder {
+    color: #adb5bd;
+}
+
+/* Plus button */
+#add-task-btn {
+    background: linear-gradient(135deg, var(--primary-color), var(--primary-light));
+    color: var(--white);
+    width: 44px;
+    height: 44px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 26px;
+    font-weight: 300;
+    line-height: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s;
+    box-shadow: 0 4px 12px rgba(119, 73, 248, 0.4);
+    flex-shrink: 0;
+    /* prevent text selection on rapid clicks */
+    user-select: none;
+}
+
+#add-task-btn:hover {
+    background: linear-gradient(135deg, var(--primary-hover), var(--primary-color));
+    transform: translateY(-1px);
+    box-shadow: 0 6px 16px rgba(119, 73, 248, 0.5);
+}
+
+#add-task-btn:active {
+    transform: translateY(0);
+}
+
+/* ── Filter Buttons ────────────────────────────── */
+.filters {
+    display: flex;
+    gap: 4px;
+    padding-bottom: 0;
+    border-bottom: none;
+}
+
+.filter-btn {
+    flex: 1;
+    padding: 9px 12px;
+    border: none;
+    border-radius: 8px 8px 0 0;
+    background: transparent;
+    color: var(--grey);
+    font-size: 13px;
+    font-weight: 500;
+    font-family: 'Inter', sans-serif;
+    cursor: pointer;
+    transition: all 0.2s;
+    border-bottom: 3px solid transparent;
+}
+
+.filter-btn:hover {
+    color: var(--primary-color);
+    background-color: rgba(119, 73, 248, 0.07);
+}
+
+.filter-btn.active {
+    color: var(--primary-color);
+    font-weight: 600;
+    border-bottom: 3px solid var(--primary-color);
+    background-color: rgba(119, 73, 248, 0.1);
+}
+
+/* ── Todo List Container ───────────────────────── */
+.todos-container {
+    background: var(--white);
+}
+
+#todo-list {
+    list-style: none;
+    padding: 10px 0;
+    max-height: 320px;
+    overflow-y: auto;
+}
+
+#todo-list::-webkit-scrollbar {
+    width: 4px;
+}
+
+#todo-list::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+#todo-list::-webkit-scrollbar-thumb {
+    background: #dee2e6;
+    border-radius: 4px;
+}
+
+/* ── Individual Todo Items ─────────────────────── */
+.todo-item {
+    display: flex;
+    align-items: center;
+    padding: 13px 20px;
+    border-bottom: 1px solid #f1f3f5;
+    transition: background-color 0.15s;
+    gap: 12px;
+}
+
+.todo-item:last-child {
+    border-bottom: none;
+}
+
+.todo-item:hover {
+    background-color: #fafafa;
+}
+
+.checkbox-container {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    margin-right: 0;
+}
+
+.todo-checkbox {
+    opacity: 0;
+    position: absolute;
+    width: 0;
+    height: 0;
+}
+
+.checkmark {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 20px;
+    height: 20px;
+    border: 2px solid #dee2e6;
+    border-radius: 5px;
+    position: relative;
+    cursor: pointer;
+    transition: all 0.2s;
+    flex-shrink: 0;
+}
+
+.checkmark:hover {
+    border-color: var(--primary-color);
+}
+
+.todo-checkbox:checked+.checkmark {
+    background: linear-gradient(135deg, var(--primary-color), var(--primary-light));
+    border-color: var(--primary-color);
+}
+
+.todo-checkbox:checked+.checkmark::after {
+    content: "";
+    position: absolute;
+    top: 3px;
+    left: 6px;
+    width: 5px;
+    height: 9px;
+    border: 2px solid var(--white);
+    border-top: none;
+    border-left: none;
+    transform: rotate(45deg);
+}
+
+.todo-item-text {
+    flex: 1;
+    font-size: 0.93rem;
+    color: var(--dark);
+    transition: all 0.2s;
+    word-break: break-word;
+}
+
+.todo-item.completed .todo-item-text {
+    text-decoration: line-through;
+    color: #adb5bd;
+}
+
+.delete-btn {
+    background: none;
+    border: none;
+    color: #ced4da;
+    cursor: pointer;
+    font-size: 14px;
+    opacity: 0;
+    transition: all 0.2s;
+    padding: 4px 6px;
+    border-radius: 4px;
+    flex-shrink: 0;
+}
+
+.todo-item:hover .delete-btn {
+    opacity: 1;
+}
+
+.delete-btn:hover {
+    color: var(--danger);
+    background-color: rgba(255, 107, 107, 0.1);
+}
+
+/* ── Empty State ───────────────────────────────── */
+.empty-state {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 48px 0;
+    color: #ced4da;
+}
+
+.empty-state i {
+    font-size: 42px;
+    margin-bottom: 12px;
+    opacity: 0.6;
+}
+
+.empty-state p {
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.hidden {
+    display: none !important;
+}
+
+/* ── Footer ────────────────────────────────────── */
+footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 14px 20px;
+    border-top: 1px solid var(--border);
+    background-color: var(--light);
+    font-size: 13px;
+}
+
+#items-left {
+    color: var(--grey);
+    font-weight: 500;
+}
+
+#clear-completed-btn {
+    background: none;
+    border: 1px solid #dee2e6;
+    color: var(--grey);
+    cursor: pointer;
+    padding: 6px 12px;
+    border-radius: 6px;
+    font-size: 12px;
+    font-family: 'Inter', sans-serif;
+    font-weight: 500;
+    transition: all 0.2s;
+}
+
+#clear-completed-btn:hover {
+    color: var(--danger);
+    border-color: var(--danger);
+    background-color: rgba(255, 107, 107, 0.06);
+}
