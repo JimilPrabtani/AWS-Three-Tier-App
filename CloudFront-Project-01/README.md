@@ -2,6 +2,9 @@
 
 # Website Delivery with CloudFront
 
+<img width="1286" height="268" alt="architecture-complete" src="https://github.com/user-attachments/assets/32b5bfd1-e31f-44ba-8348-5d0c1f791fa2" />
+
+
 **Project Link:** [View Project](http://learn.nextwork.org/projects/aws-networks-cloudfront)
 
 **Author:** Jimil Prabtani  
