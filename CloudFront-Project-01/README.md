@@ -95,5 +95,10 @@ Compared to the permission settings for my CloudFront distribution, using S3 mea
 ## S3 vs CloudFront Load Times
 
 ---
-
+| Metric | Standalone AWS S3 Website | AWS S3 + Amazon CloudFront |
+|--------|---------------------------|---------------------------|
+| Typical Total Page Load Time | 1.5 to 6.0 seconds | 100ms to 850ms |
+| First-Byte Latency (TTFB) | 50ms – 300ms+ (Depends heavily on distance) | 20ms – 55ms (Cached edge hit) |
+| Global Consistency | High variation; slow for international users | Consistently ultra-fast globally |
+| Connection Protocol | HTTP only (unless routed through a proxy) | Native HTTPS with optimized TLS handshakes |
 ---
